@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8"/ >
+  <title>Google Map API サンプル</title>
+  </head>
+  <body> 
+  <p>Google Map Test</p>
+  <div id="map" style="width:500px; height:300px"></div>
+  <input id="search" type="button" value="公共クラウドのデータ取得"></inout>
+  <script type="text/javascript" src="testMap.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="application/javascript"></script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3infBvJeAdiM6KqqBTS0i5jCnzIDWp8o&callback=initMap" type="text/javascript"></script>
+   <script>
+     $(function(){
+
+     $('#search').click(function(){
+
+     var genre = "公園";
+     var eURI = encodeURI(genre);
+
+     var URL = "https://www.chiikinogennki.soumu.go.jp/k-cloud-api/v001/kanko/"+eURI+"/json?"+encodeURI("limit=10");
+
+     //var tsName[];
+
+     
+     $.getJSON(URL,function(data){
+
+     for(var i=0; i<data.tourspots.length; i++){
+
+	alert(data.tourspots[i].name.name1.written);				   
+      //tsName[i] = data.tourspots[i].name.name1.written;
+        '<th>'+data.tourspots[i].name.name1.written+'</th>'			     
+     }
+     
+     });
+     });
+     });
+   </script> 
+   </body>
+</html>
